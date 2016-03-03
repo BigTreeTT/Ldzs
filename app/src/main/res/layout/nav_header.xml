@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="32dp"
+    android:paddingLeft="32dp"
+    android:paddingBottom="32dp"
+    android:background="@android:color/holo_blue_light"
+    android:theme="@style/AppTheme"
+    >
+
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@android:color/darker_gray"
+        android:paddingEnd="32dp"
+
+
+        android:id="@+id/headPortrait" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/userName"
+        android:text="Jack Chen"
+        android:layout_marginTop="21dp"
+        android:layout_below="@+id/headPortrait"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+</RelativeLayout>
