@@ -37,6 +37,25 @@ public class JwcAPI {
     //public static final String mainPageAdd = "default2.aspx";
     public String cookie = null;
     HttpClient httpClient;
+    /**
+     * 单例模式，线程安全
+     *
+     */
+    private static JwcAPI instance;
+    private JwcAPI(){}
+    public static synchronized JwcAPI getJwcAPIInstance(){
+        if (instance==null){
+            return new JwcAPI();
+        }
+        return instance;
+
+
+    }
+
+
+
+
+
 
 
     /**
@@ -46,7 +65,7 @@ public class JwcAPI {
      * @param passWord 密码
      * @return HttpClient的实例 如果登录失败返回null
      */
-    public HttpClient login(String userName, String passWord, int jkl) {
+    public String login(String userName, String passWord, int jkl) {
         //获取cookie
 
         try {
@@ -88,10 +107,13 @@ public class JwcAPI {
                 response = client.execute(mainGet);
                 String mainHtml = EntityUtils.toString(response.getEntity());
                 Log.d("mainHtml", mainHtml);
+                httpClient = client;
+                return mainHtml;
 
+            }else{
+                return  null;
             }
-            httpClient = client;
-            return client;
+
 
 
         } catch (IOException e) {
