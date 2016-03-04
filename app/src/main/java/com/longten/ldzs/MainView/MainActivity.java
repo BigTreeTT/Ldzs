@@ -1,5 +1,6 @@
 package com.longten.ldzs.MainView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -12,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.longten.ldzs.Appraise.AppraiseFragment;
 import com.longten.ldzs.Curriculum.CurriculumFragment;
@@ -20,6 +22,9 @@ import com.longten.ldzs.Library.LibraryFragment;
 import com.longten.ldzs.News.NewsFragment;
 import com.longten.ldzs.R;
 import com.longten.ldzs.jwcAPI.JwcAPI;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class MainActivity extends AppCompatActivity
@@ -35,6 +40,10 @@ public class MainActivity extends AppCompatActivity
     FragmentTransaction transaction;
     CurriculumFragment curriculumFragment;
     boolean is_first = true;
+    TextView userName;
+    String xhxm;
+    String studentName;
+
 
 
 
@@ -44,10 +53,19 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        jwcAPI = JwcAPI.getJwcAPIInstance();
-
-
         init();
+        //从LoginActivity中获取登录数据
+        jwcAPI = JwcAPI.getJwcAPIInstance();
+        Intent intent = getIntent();
+        Bundle bundle = intent.getBundleExtra("loginInfo");
+        xhxm = bundle.getString("xhxm");
+
+
+        //设置登录者信息
+        studentName = setUserName();
+        JwcAPI.studentName = studentName;
+        JwcAPI.studentXh  = bundle.getString("xh");
+
     }
 
     /**
@@ -64,6 +82,7 @@ public class MainActivity extends AppCompatActivity
 
              }
          });
+
 
 
          toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -92,7 +111,26 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    public void setUserName(){
+    /**
+     * 使用正则表达式获取姓名，设置nav Head username
+     * 返回姓名
+     * @return
+     */
+
+    public String setUserName(){
+        userName = (TextView) findViewById(R.id.userName);
+        //正则表达式
+        Pattern pattern = Pattern.compile("\\b[\\u4e00-\\u9fa5].*同学");
+        Matcher matcher = pattern.matcher(xhxm);
+        String []name = new String[5];
+        if (matcher.find()){
+            xhxm = matcher.group();
+            pattern = Pattern.compile("同学");
+            name = pattern.split(xhxm);
+            xhxm = name[0];
+        }
+        userName.setText(xhxm + "同学");
+        return xhxm;
 
     }
 

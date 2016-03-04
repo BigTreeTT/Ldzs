@@ -6,4 +6,11 @@
     <TextView android:layout_width="match_parent" android:layout_height="match_parent"
         android:text="课表" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/curr_text"
+        android:layout_gravity="center" />
+
 </FrameLayout>

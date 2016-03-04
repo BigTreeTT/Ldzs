@@ -37,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
         findViewById(R.id.btn_login).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String userNameStr = userName.getText().toString();
+                final String userNameStr = userName.getText().toString();
                 String passWordStr = passWord.getText().toString();
                 new AsyncTask<String,String,String>(){
 
@@ -59,7 +59,8 @@ public class LoginActivity extends AppCompatActivity {
                             String xhxm = analyseHtml(html);
                             Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                             Bundle bundle = new Bundle();
-                            bundle.putString("xmxh",xhxm);
+                            bundle.putString("xhxm",xhxm);
+                            bundle.putString("xh",userNameStr);
                             intent.putExtra("loginInfo",bundle);
 
                             startActivity(intent);
@@ -68,7 +69,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         return html;
                     }
-                }.execute(userNameStr,passWordStr);
+                }.execute("20124562","431021199307018314");
             }
         });
 

@@ -35,8 +35,11 @@ public class JwcAPI {
     public static final String indexAdd = "http://220.168.44.238/";
     public static final String loginAdd = "default2.aspx";
     //public static final String mainPageAdd = "default2.aspx";
-    public String cookie = null;
+    public static String cookie = null;
     HttpClient httpClient;
+    public static String studentName;
+    public static String studentXh;
+
     /**
      * 单例模式，线程安全
      *
@@ -49,6 +52,10 @@ public class JwcAPI {
         }
         return instance;
 
+
+    }
+    public void printXHXM(){
+        Log.d("test-xh-xm",studentName + studentXh);
 
     }
 
@@ -169,8 +176,11 @@ public class JwcAPI {
      *
      */
     public String getCurriculum(){
-        HttpGet get = new HttpGet(
-                "http://220.168.44.238/xskbcx.aspx?xh=20124562&xm=%C1%FA%CC%DA&gnmkdm=N121603");
+
+        String url ="http://220.168.44.238/xskbcx.aspx?xh="
+                +JwcAPI.studentXh+"&xm="
+                +URLEncoder.encode(JwcAPI.studentName+"gb2312")+"&gnmkdm=N121603";
+        HttpGet get = new HttpGet(url);
         get.setHeader("Referer", "http://220.168.44.238/xs_main.aspx?xh=20124562");
         get.setHeader("Host","220.168.44.238");
         try {
@@ -190,6 +200,28 @@ public class JwcAPI {
 
         return null;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
