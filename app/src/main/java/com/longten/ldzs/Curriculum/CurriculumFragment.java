@@ -117,6 +117,10 @@ public class CurriculumFragment extends Fragment {
                 curriculumInfo = (CurriculumInfo) reader.readObject();
                 currTextView.setText(curriculumInfo.curriculum.toString()+"hello");
                 //将数据以图表格式方式绘制
+
+
+
+
             }
 
         }catch (IOException e){
