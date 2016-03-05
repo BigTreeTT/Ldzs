@@ -10,6 +10,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.util.ArrayList;
+
 /**
  * Created by Administrator on 2016/3/3.
  */
@@ -104,18 +106,44 @@ public class CurrPresenter {
      */
 
     public void analyse(String html) {
+        CurriculumInfo curriculumInfo = new CurriculumInfo();
         Document doc = Jsoup.parse(html);
         Element table = doc.getElementById("Table1");
         Elements trs = table.getElementsByTag("tr");
-        for (int i = 2; i < 12; i++) {
-            Elements tds = trs.get(i).select("td");
-            for (int j = 0;j<tds.size();j++){
-                Element td = tds.get(j);
-                fragment.currTextView.append(td.text());
-                Log.d("element","---"+String.valueOf(i)+String.valueOf(j)+td.text());
+        ArrayList<ArrayList<String>> curriculum = new ArrayList<>();
+        for (int i = 2; i < 12; ) {
+            Elements tds = trs.get(i).select("td");//
+//            for (int j = 0;j<tds.size();j++){
+//                Element td = tds.get(j);
+//                fragment.currTextView.append(td.text());
+//                Log.d("element","---"+String.valueOf(i)+String.valueOf(j)+td.text());
+//
+//                //
+//
+//
+//            }
+            ArrayList<String> course = new ArrayList<>();
+            if (i == 2 ||i ==6 || i==10){
+
+                for (int k = 0;k<tds.size();k++){
+                    if (k>=2){
+                        course.add(tds.get(k).text());
+                    }
+                }
+
+
+            }else{
+                for (int k = 0;k<tds.size();k++){
+                    if (k>=1){
+                        course.add(tds.get(k).text());
+                    }
+                }
 
             }
+            curriculum.add(course);
+            i = i+2;
         }
+        fragment.currTextView.setText(curriculum.toString());
 
 
     }
