@@ -10,6 +10,10 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 /**
@@ -52,7 +56,7 @@ public class CurrPresenter {
 
                 html[0] = responseString;
                 if (html[0] != null) {
-                    Log.d("html[0]",html[0]);
+                    Log.d("html[0]", html[0]);
                     analyse(html[0]);
 
                 }
@@ -60,7 +64,6 @@ public class CurrPresenter {
             }
         }.execute();
         return true;
-
 
 
     }
@@ -110,7 +113,7 @@ public class CurrPresenter {
         Document doc = Jsoup.parse(html);
         Element table = doc.getElementById("Table1");
         Elements trs = table.getElementsByTag("tr");
-        ArrayList<ArrayList<String>> curriculum = new ArrayList<>();
+
         for (int i = 2; i < 12; ) {
             Elements tds = trs.get(i).select("td");//
 //            for (int j = 0;j<tds.size();j++){
@@ -123,27 +126,49 @@ public class CurrPresenter {
 //
 //            }
             ArrayList<String> course = new ArrayList<>();
-            if (i == 2 ||i ==6 || i==10){
+            if (i == 2 || i == 6 || i == 10) {
 
-                for (int k = 0;k<tds.size();k++){
-                    if (k>=2){
+                for (int k = 0; k < tds.size(); k++) {
+                    if (k >= 2) {
                         course.add(tds.get(k).text());
                     }
                 }
 
 
-            }else{
-                for (int k = 0;k<tds.size();k++){
-                    if (k>=1){
+            } else {
+                for (int k = 0; k < tds.size(); k++) {
+                    if (k >= 1) {
                         course.add(tds.get(k).text());
                     }
                 }
 
             }
-            curriculum.add(course);
-            i = i+2;
+            curriculumInfo.curriculum.add(course);
+            i = i + 2;
         }
-        fragment.currTextView.setText(curriculum.toString());
+        //fragment.currTextView.setText(curriculumInfo.curriculum.toString());
+        /**
+         *
+         * 把数据存入文件lastUseCurriculum
+         */
+        File curr = new File(fragment.activity.getFilesDir(), "lastUseCurriculum");
+        try {
+            if (curr.exists()) {
+
+                FileOutputStream out = new FileOutputStream(curr);
+                ObjectOutputStream writer = new ObjectOutputStream(out);
+                writer.writeObject(curriculumInfo);
+
+            } else {
+
+                curr.createNewFile();
+
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Log.d("file", String.valueOf(curr.length()));
 
 
     }
