@@ -9,6 +9,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -65,6 +66,7 @@ public class MainActivity extends AppCompatActivity
         studentName = setUserName();
         JwcAPI.studentName = studentName;
         JwcAPI.studentXh  = bundle.getString("xh");
+        Log.d("test-xh-xm",JwcAPI.studentXh+"-"+JwcAPI.studentName);
 
     }
 
@@ -171,6 +173,16 @@ public class MainActivity extends AppCompatActivity
                 transaction = fragmentManager.beginTransaction();
                 transaction.replace(R.id.fragment_con,new CurriculumFragment());
                 transaction.commit();
+//                new Thread(){
+//                    @Override
+//                    public void run() {
+//                        super.run();
+//
+//                        JwcAPI jwcAPI = JwcAPI.getJwcAPIInstance();
+//                        jwcAPI.getCurriculum("11");
+//                        Log.d("test123456","1234"+jwcAPI.getCurrentCurriculum());
+//                    }
+//                }.start();
 
 
 

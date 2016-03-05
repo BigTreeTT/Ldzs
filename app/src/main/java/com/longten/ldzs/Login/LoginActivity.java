@@ -34,44 +34,51 @@ public class LoginActivity extends AppCompatActivity {
          *
          */
 
-        findViewById(R.id.btn_login).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final String userNameStr = userName.getText().toString();
-                String passWordStr = passWord.getText().toString();
-                new AsyncTask<String,String,String>(){
+       try {
+           findViewById(R.id.btn_login).setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View v) {
+                   final String userNameStr = userName.getText().toString();
+                   final String passWordStr = passWord.getText().toString();
+                   new AsyncTask<String,String,String>(){
 
 
-                    @Override
-                    protected String doInBackground(String... params) {
-                        String xh = params[0];
-                        String pw = params[1];
-                        JwcAPI jwcAPI = JwcAPI.getJwcAPIInstance();
-                        String html = jwcAPI.login(xh,pw,1);
-                        if (html ==null){
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    Toast.makeText(getApplicationContext(),"请检查密码和网络!",Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                        }else{
-                            String xhxm = analyseHtml(html);
-                            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-                            Bundle bundle = new Bundle();
-                            bundle.putString("xhxm",xhxm);
-                            bundle.putString("xh",userNameStr);
-                            intent.putExtra("loginInfo",bundle);
+                       @Override
+                       protected String doInBackground(String... params) {
+                           String xh = params[0];
+                           String pw = params[1];
+                           JwcAPI jwcAPI = JwcAPI.getJwcAPIInstance();
+                           String html = jwcAPI.login(xh,pw,1);
+                           Log.d("testhtml",html);
+                           if (html ==null){
+                               runOnUiThread(new Runnable() {
+                                   @Override
+                                   public void run() {
+                                       Toast.makeText(getApplicationContext(), "请检查密码和网络!", Toast.LENGTH_SHORT).show();
+                                   }
+                               });
+                           }else{
 
-                            startActivity(intent);
-                        }
+                               String xhxm = analyseHtml(html);
+                               Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                               Bundle bundle = new Bundle();
+                               bundle.putString("xhxm",xhxm);
+                               bundle.putString("xh",userNameStr);
+                               intent.putExtra("loginInfo",bundle);
+
+                               startActivity(intent);
+                           }
 
 
-                        return html;
-                    }
-                }.execute("20124562","431021199307018314");
-            }
-        });
+                           return html;
+                       }
+                   }.execute("20124562","431021199307018314");
+               }
+           });
+
+       }catch (Exception e){
+           Toast.makeText(getApplicationContext(),"请检查网络，重新登录",Toast.LENGTH_SHORT).show();
+       }
 
 
     }
