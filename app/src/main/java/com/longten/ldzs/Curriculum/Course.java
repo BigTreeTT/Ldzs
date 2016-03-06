@@ -14,7 +14,7 @@ public class Course {
     public String toString() {
 
 
-        return courseName +"+"+startTime+"+"+endTime+"+"+teacher+"+"+addr;
+        return courseName +"+"+startTime+"+"+endTime+"+"+teacher+"+"+addr+"\n";
 
     }
 }

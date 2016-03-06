@@ -137,7 +137,7 @@ public class CurriculumFragment extends Fragment {
                         Course course2 = new Course();
                         String input = curriculumInfo.curriculum.get(i).get(j);
                         //课程名
-                        String regex ="\\S+(?=\\s周[\\u4e00-\\u9fa5]第)";
+                        String regex ="\\S+(?=\\s周[\\u4e00-\\u9fa5]第)|\\b\\S+(?=\\s[{]第)";
                         Pattern pattern = Pattern.compile(regex);
                         Matcher matcher = pattern.matcher(input);
                         if (matcher.find()){
@@ -154,18 +154,91 @@ public class CurriculumFragment extends Fragment {
                         }else{
                             course.courseName = null;
                         }
+
+                        //startTime
+                        String regexStartTime ="(?<=第)\\d+(?=-\\d+周)";
+                        Pattern patternStartTime = Pattern.compile(regexStartTime);
+                        Matcher matcherStarTime = patternStartTime.matcher(input);
+                        if (matcherStarTime.find()){
+                            course.startTime = matcherStarTime.group();
+                            if (matcherStarTime.find()){
+                                course2.startTime = matcherStarTime.group();
+
+                            }else {
+                                course2.startTime = null;
+                            }
+                            //currTextView.append("\n");
+                        }else{
+                            course.startTime = null;
+                        }
+
+                        String regexStartTime2 ="(?<=第)\\d+(?=-\\d+周)";
+                        Pattern patternStartTime2 = Pattern.compile(regexStartTime2);
+                        Matcher matcherStarTime2 = patternStartTime2.matcher(input);
+
+                        //endTime
+                        Matcher matcherEndTime = Pattern
+                                .compile("\\d+(?=周)")
+                                .matcher(input);
+                        if (matcherEndTime.find()){
+                            course.endTime = matcherEndTime.group();
+                            if (matcherEndTime.find()){
+                                course2.endTime = matcherEndTime.group();
+                            }
+
+
+                        }
+                        //teacher
+                        Matcher matcherTeacher = Pattern
+                                .compile("(?<=周[}]\\s)[\\u4e00-\\u9fa5]{2,6}(?=\\s)|(?<=[周][}]\\s\\d{6}[|])[\\u4e00-\\u9fa5]{2,6}(?=\\s)")
+                                .matcher(input);
+                        if (matcherTeacher.find()){
+                            course.teacher = matcherTeacher.group();
+                            if (matcherTeacher.find()){
+                                course2.teacher = matcherTeacher.group();
+                            }
+
+
+
+                        }
+                        //addr
+                        String teacherName =null;
+                        if (course.teacher!=null){
+                            teacherName = course.teacher;
+                        }else if(course2.teacher!=null){
+                            teacherName = course2.teacher;
+                        }
+
+                        Matcher matcherAddr = Pattern
+                                .compile("\\b\\S教[\\u4e00-\\u9fa5]*\\d{3}\\b|\\b[\\u4e00-\\u9fa5]{1,3}\\d{3}|(?<="+teacherName+ "\\s)\\S+")
+                                .matcher(input);
+                        if (matcherAddr.find()){
+                            course.addr = matcherAddr.group();
+                            if (matcherAddr.find()){
+                                course2.addr = matcherAddr.group();
+                            }
+
+                        }
+
+
+
+
+
                         courses.add(course);
                         courses2.add(course2);
+
 
                     }
                     curriculumShowInfo.curriculum.add(courses);
                     curriculumShowInfo2.curriculum.add(courses2);
-                    currTextView.append(curriculumShowInfo.curriculum.toString());
-                    currTextView.append(curriculumShowInfo2.curriculum.toString());
+
 
 
 
                 }
+                currTextView.append(curriculumShowInfo.curriculum.toString());
+                currTextView.append(curriculumShowInfo2.curriculum.toString());
+
 
 
 
