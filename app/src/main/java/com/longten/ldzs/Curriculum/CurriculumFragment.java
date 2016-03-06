@@ -243,6 +243,7 @@ public class CurriculumFragment extends Fragment {
 
 
 
+
             }
 
         }catch (IOException e){
