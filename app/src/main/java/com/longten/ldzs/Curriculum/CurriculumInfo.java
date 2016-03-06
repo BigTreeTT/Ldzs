@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * Created by Administrator on 2016/3/3.
  */
 public class CurriculumInfo implements Serializable{
-    public ArrayList<ArrayList> curriculum;
+    public ArrayList<ArrayList<String>> curriculum;
 
 
     public CurriculumInfo(){
