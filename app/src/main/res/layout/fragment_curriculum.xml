@@ -1,23 +1,112 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" tools:context="com.longten.ldzs.Curriculum.CurriculumFragment">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="课表" />
+    android:orientation="vertical"
+    tools:context="com.longten.ldzs.Curriculum.CurriculumFragment">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/scrollView"
-        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+
         >
+
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/curr_textView"
-            />
+            android:layout_width="25dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/border" />
 
-        </ScrollView>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="@drawable/border"
+            android:text="周一" />
 
-</FrameLayout>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="@drawable/border"
+            android:text="周二" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:background="@drawable/border"
+            android:gravity="center"
+            android:text="周三" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:background="@drawable/border"
+            android:gravity="center"
+            android:text="周四" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:background="@drawable/border"
+            android:gravity="center"
+            android:text="周五" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:background="@drawable/border"
+            android:gravity="center"
+            android:text="周六" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:background="@drawable/border"
+            android:gravity="center"
+            android:text="周日" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ListView
+            android:id="@+id/listView_courseNumber"
+            android:layout_width="25dp"
+
+            android:layout_height="wrap_content"
+            android:divider="#FFCC00"
+            android:layout_weight="0">
+
+        </ListView>
+        <GridView
+            android:layout_weight="1"
+            android:layout_width="0dp"
+
+            android:layout_height="wrap_content"
+            android:id="@+id/curriculum_gridView"
+            android:numColumns="7"
+
+
+            >
+
+        </GridView>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

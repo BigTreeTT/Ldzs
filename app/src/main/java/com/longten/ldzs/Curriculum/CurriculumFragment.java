@@ -6,10 +6,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.view.WindowManager;
+import android.widget.GridView;
+import android.widget.ListView;
 
 import com.longten.ldzs.MainView.MainActivity;
 import com.longten.ldzs.R;
@@ -29,9 +32,11 @@ import java.util.regex.Pattern;
 public class CurriculumFragment extends Fragment {
 
     View fragment;
-    public TextView currTextView;
+    //public TextView currTextView;
     String result;
     Handler handler;
+    ListView listView;
+    GridView gridView;
     public MainActivity activity;
 
 
@@ -63,7 +68,7 @@ public class CurriculumFragment extends Fragment {
         // Inflate the layout for this fragment/
 
         fragment = inflater.inflate(R.layout.fragment_curriculum, container, false);
-        currTextView = (TextView) fragment.findViewById(R.id.curr_textView);
+        //currTextView = (TextView) fragment.findViewById(R.id.curr_textView);
         File Dir =  activity.getApplicationContext().getFilesDir();
         File curr = new File(Dir,"lastUseCurriculum");
         if (!curr.exists()){
@@ -74,8 +79,18 @@ public class CurriculumFragment extends Fragment {
                 e.printStackTrace();
             }
         }
-        //importTable("21");
-        drawTable();
+
+        listView = (ListView) fragment.findViewById(R.id.listView_courseNumber);
+        listView.setAdapter(new LvcnAdapter(activity.getApplicationContext()));
+        gridView = (GridView) fragment.findViewById(R.id.curriculum_gridView);
+        if (curr.length()==0){
+            importTable("21");
+        }else {
+            drawTable();
+        }
+
+
+
         return fragment;
     }
 
@@ -122,7 +137,7 @@ public class CurriculumFragment extends Fragment {
                 FileInputStream in = new FileInputStream(curr);
                 ObjectInputStream reader = new ObjectInputStream(in);
                 curriculumInfo = (CurriculumInfo) reader.readObject();
-                currTextView.setText(curriculumInfo.curriculum.toString() + "hello");
+                //currTextView.setText(curriculumInfo.curriculum.toString() + "hello");
                 Log.d("hello",curriculumInfo.curriculum.toString());
                 //将数据以图表格式方式绘制
 
@@ -141,16 +156,16 @@ public class CurriculumFragment extends Fragment {
                         Pattern pattern = Pattern.compile(regex);
                         Matcher matcher = pattern.matcher(input);
                         if (matcher.find()){
-                            currTextView.append("课程:"+matcher.group());
+                            //currTextView.append("课程:"+matcher.group());
                             course.courseName = matcher.group();
                             if (matcher.find()){
-                                currTextView.append("课程:"+matcher.group());
+                                //currTextView.append("课程:"+matcher.group());
                                 course2.courseName = matcher.group();
 
                             }else {
                                 course2.courseName = null;
                             }
-                            currTextView.append("\n");
+                            //currTextView.append("\n");
                         }else{
                             course.courseName = null;
                         }
@@ -236,8 +251,19 @@ public class CurriculumFragment extends Fragment {
 
 
                 }
-                currTextView.append(curriculumShowInfo.curriculum.toString());
-                currTextView.append(curriculumShowInfo2.curriculum.toString());
+                //currTextView.append(curriculumShowInfo.curriculum.toString());
+                //currTextView.append(curriculumShowInfo2.curriculum.toString());
+                GridViewAdpter gridViewAdpter = new GridViewAdpter(
+                        activity.getApplicationContext(),
+                        curriculumShowInfo,curriculumShowInfo2,1);
+                gridView.setAdapter(gridViewAdpter);
+                WindowManager windowManager = (WindowManager) activity
+                        .getApplicationContext()
+                        .getSystemService(Context.WINDOW_SERVICE);
+                Display display = windowManager.getDefaultDisplay();
+                int windowWith = display.getWidth();
+                Log.d("windwWidth", String.valueOf(windowWith));
+               // gridView.setColumnWidth();
 
 
 

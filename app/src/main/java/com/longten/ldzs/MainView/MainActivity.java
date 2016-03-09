@@ -20,6 +20,7 @@ import com.longten.ldzs.Appraise.AppraiseFragment;
 import com.longten.ldzs.Curriculum.CurriculumFragment;
 import com.longten.ldzs.GradeScore.GradeScoreFragment;
 import com.longten.ldzs.Library.LibraryFragment;
+import com.longten.ldzs.Library.QueryActivity;
 import com.longten.ldzs.News.NewsFragment;
 import com.longten.ldzs.R;
 import com.longten.ldzs.jwcAPI.JwcAPI;
@@ -29,9 +30,9 @@ import java.util.regex.Pattern;
 
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener{
+        implements NavigationView.OnNavigationItemSelectedListener, LibraryFragment.Listener {
     public DrawerLayout drawerLayout;
-    ListView nav_menu ;
+    ListView nav_menu;
     ActionBarDrawerToggle toogle;
     Toolbar toolbar;
     NavigationView navigationView;
@@ -44,10 +45,6 @@ public class MainActivity extends AppCompatActivity
     TextView userName;
     String xhxm;
     String studentName;
-
-
-
-
 
 
     @Override
@@ -65,50 +62,45 @@ public class MainActivity extends AppCompatActivity
         //设置登录者信息
         studentName = setUserName();
         JwcAPI.studentName = studentName;
-        JwcAPI.studentXh  = bundle.getString("xh");
-        Log.d("test-xh-xm",JwcAPI.studentXh+"-"+JwcAPI.studentName);
+        JwcAPI.studentXh = bundle.getString("xh");
+        Log.d("test-xh-xm", JwcAPI.studentXh + "-" + JwcAPI.studentName);
 
     }
 
     /**
      * 完成初始化工作
-     *
      */
 
-     public void init(){
-         //nav_header headPortrait 的click事件
-         headPortrait = (ImageView) findViewById(R.id.headPortrait);
-         headPortrait.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View v) {
+    public void init() {
+        //nav_header headPortrait 的click事件
+        headPortrait = (ImageView) findViewById(R.id.headPortrait);
+        headPortrait.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-             }
-         });
-
-
-
-         toolbar = (Toolbar) findViewById(R.id.toolbar);
-         toolbar.setTitle("课表");
-         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
-         navigationView = (NavigationView) findViewById(R.id.navigation);
-
-         //创建把手
-         setSupportActionBar(toolbar);
-         toogle = new ActionBarDrawerToggle(
-                 this,drawerLayout,toolbar,R.string.open,R.string.close
-         );
-         toogle.syncState();
-         //设置navigation menu的监听器
-         navigationView.setNavigationItemSelectedListener(this);
-
-         //获得FragmentManager
-         fragmentManager = getSupportFragmentManager();
-         transaction = fragmentManager.beginTransaction();
-         transaction.replace(R.id.fragment_con,new CurriculumFragment());
-         transaction.commit();
+            }
+        });
 
 
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("课表");
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        navigationView = (NavigationView) findViewById(R.id.navigation);
 
+        //创建把手
+        setSupportActionBar(toolbar);
+        toogle = new ActionBarDrawerToggle(
+                this, drawerLayout, toolbar, R.string.open, R.string.close
+        );
+        toogle.syncState();
+        //设置navigation menu的监听器
+        navigationView.setNavigationItemSelectedListener(this);
+
+        //获得FragmentManager
+        fragmentManager = getSupportFragmentManager();
+        transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.fragment_con, new CurriculumFragment());
+        transaction.commit();
 
 
     }
@@ -116,16 +108,17 @@ public class MainActivity extends AppCompatActivity
     /**
      * 使用正则表达式获取姓名，设置nav Head username
      * 返回姓名
+     *
      * @return
      */
 
-    public String setUserName(){
+    public String setUserName() {
         userName = (TextView) findViewById(R.id.userName);
         //正则表达式
         Pattern pattern = Pattern.compile("\\b[\\u4e00-\\u9fa5].*同学");
         Matcher matcher = pattern.matcher(xhxm);
-        String []name = new String[5];
-        if (matcher.find()){
+        String[] name = new String[5];
+        if (matcher.find()) {
             xhxm = matcher.group();
             pattern = Pattern.compile("同学");
             name = pattern.split(xhxm);
@@ -139,7 +132,6 @@ public class MainActivity extends AppCompatActivity
     /**
      * 导航栏
      *
-     *
      * @param menuItem
      * @return
      */
@@ -149,29 +141,32 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem menuItem) {
 
 
-
-        switch (menuItem.getItemId()){
+        switch (menuItem.getItemId()) {
             case R.id.nav_xk:
 
                 toolbar.setTitle("选课");
 
 
-
                 break;
             case R.id.nav_cj:
+                new Thread() {
+                    @Override
+                    public void run() {
+                        super.run();
+                        JwcAPI.getJwcAPIInstance().getScore();
+                    }
+                }.start();
                 toolbar.setTitle("成绩");
                 transaction = fragmentManager.beginTransaction();
-                transaction.replace(R.id.fragment_con,new GradeScoreFragment());
+                transaction.replace(R.id.fragment_con, new GradeScoreFragment());
                 transaction.commit();
-
-
 
 
                 break;
             case R.id.nav_kb:
                 toolbar.setTitle("课表");
                 transaction = fragmentManager.beginTransaction();
-                transaction.replace(R.id.fragment_con,new CurriculumFragment());
+                transaction.replace(R.id.fragment_con, new CurriculumFragment());
                 transaction.commit();
 //                new Thread(){
 //                    @Override
@@ -185,14 +180,13 @@ public class MainActivity extends AppCompatActivity
 //                }.start();
 
 
-
-
                 break;
             case R.id.nav_pj:
                 toolbar.setTitle("评价");
                 transaction = fragmentManager.beginTransaction();
-                transaction.replace(R.id.fragment_con,new AppraiseFragment());
+                transaction.replace(R.id.fragment_con, new AppraiseFragment());
                 transaction.commit();
+
 
                 break;
             case R.id.nav_tsg:
@@ -202,15 +196,16 @@ public class MainActivity extends AppCompatActivity
                  *
                  */
                 transaction = fragmentManager.beginTransaction();
-                transaction.replace(R.id.fragment_con,new LibraryFragment());
+                transaction.replace(R.id.fragment_con, new LibraryFragment());
                 transaction.commit();
+
 
                 break;
             case R.id.nav_gg:
                 toolbar.setTitle("公告");
                 transaction = fragmentManager.beginTransaction();
 
-                transaction.replace(R.id.fragment_con,new NewsFragment());
+                transaction.replace(R.id.fragment_con, new NewsFragment());
                 transaction.commit();
                 break;
 
@@ -221,5 +216,12 @@ public class MainActivity extends AppCompatActivity
         }
         drawerLayout.closeDrawer(navigationView);
         return true;
+    }
+
+    @Override
+    public void gotoQureryActivity(String title) {
+        Intent intent = new Intent(MainActivity.this, QueryActivity.class);
+        intent.putExtra("title", title);
+        startActivity(intent);
     }
 }

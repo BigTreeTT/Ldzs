@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="16dp">
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+
+        android:text="索书号"
+        android:id="@+id/tv_loginkey"
+        />
+    <TextView
+        android:layout_width="145dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="馆藏地址"
+        android:id="@+id/tv_addr"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="图书类型"
+        android:id="@+id/tv_type"
+
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+
+
+        android:text="价格"
+        android:id="@+id/tv_price"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+
+        android:text="状态"
+        android:id="@+id/tv_state"
+        />
+
+
+
+</LinearLayout>

@@ -94,6 +94,7 @@ public class CurrPresenter {
                     analyse(html[0]);
 
                 }
+                fragment.drawTable();
             }
         }.execute(condition);
 

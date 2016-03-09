@@ -49,12 +49,12 @@ public class LoginActivity extends AppCompatActivity {
                            String pw = params[1];
                            JwcAPI jwcAPI = JwcAPI.getJwcAPIInstance();
                            String html = jwcAPI.login(xh,pw,1);
-                           Log.d("testhtml",html);
+                           //Log.d("testhtml",html);
                            if (html ==null){
                                runOnUiThread(new Runnable() {
                                    @Override
                                    public void run() {
-                                       Toast.makeText(getApplicationContext(), "请检查密码和网络!", Toast.LENGTH_SHORT).show();
+                                       Toast.makeText(getApplicationContext(), "请检查密码!", Toast.LENGTH_SHORT).show();
                                    }
                                });
                            }else{
@@ -63,16 +63,18 @@ public class LoginActivity extends AppCompatActivity {
                                Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                                Bundle bundle = new Bundle();
                                bundle.putString("xhxm",xhxm);
-                               bundle.putString("xh",userNameStr);
+                               bundle.putString("xh",xh);
                                intent.putExtra("loginInfo",bundle);
 
                                startActivity(intent);
+                               finish();
+
                            }
 
 
                            return html;
                        }
-                   }.execute("20124562","431021199307018314");
+                   }.execute(userNameStr,passWordStr);
                }
            });
 

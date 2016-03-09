@@ -306,7 +306,7 @@ public class JwcAPI {
         }
 
         //设置请求头
-        post.setHeader("Referer", "http://220.168.44.238/xs_main.aspx?xh=20124562");
+        post.setHeader("Referer", "http://220.168.44.238/xs_main.aspx?xh="+JwcAPI.studentXh);
         post.setHeader("Host", "220.168.44.238");
 
         try {
@@ -344,7 +344,7 @@ public class JwcAPI {
             Log.d("test-url",url);
             //url = "http://220.168.44.238/xskbcx.aspx?xh=20124562&xm=%C1%FA%CC%DA&gnmkdm=N121603";
             HttpGet get = new HttpGet(url);
-            get.setHeader("Referer", "http://220.168.44.238/xs_main.aspx?xh=20124562");
+            get.setHeader("Referer", "http://220.168.44.238/xs_main.aspx?xh="+JwcAPI.studentXh);
             get.setHeader("Host", "220.168.44.238");
             HttpResponse httpResponse = httpClient.execute(get);
             Log.d("test123456", "123456"+String.valueOf(httpResponse.getStatusLine()));
@@ -370,11 +370,290 @@ public class JwcAPI {
     }
 
     /**
-     * 成绩查询
      *
      *
-     *
+     * 学期成绩
+     * @param xn
+     * @param xq
+     * @return
      */
+
+
+    public String getScore(String xn,String xq){
+        String html = null;
+        try {
+            //url = "http://220.168.44.238/xscjcx.aspx?xh=20124562&xm=%C1%FA%CC%DA&gnmkdm=N121605";
+            String url = "http://220.168.44.238/xscjcx.aspx?"
+                    +"xh=" + URLEncoder.encode(JwcAPI.studentXh,"gb2312")
+                    +"&xm=" + URLEncoder.encode(JwcAPI.studentName,"gb2312")
+                    +"&gnmkdm=N121605";
+
+
+            HttpGet get = new HttpGet(url);
+            get.setHeader("Referer", "http://220.168.44.238/xs_main.aspx?xh=20124562");
+            get.setHeader("Host", "220.168.44.238");
+
+            HttpResponse response = httpClient.execute(get);
+            if (response.getStatusLine().getStatusCode()==200){
+                html= EntityUtils.toString(response.getEntity());
+                Log.d("cjcx","ok1");
+            }
+            if (response.getStatusLine().getStatusCode()!=200){
+                return null;
+            }
+            Document doc = Jsoup.parse(html);
+            Element __ve = doc.getElementById("__VIEWSTATE");
+
+            Element __vr = doc.getElementById("__VIEWSTATEGENERATOR");
+
+            Element __vn = doc.getElementById("__EVENTVALIDATION");
+
+            String __VIEWSTATE = __ve.attr("value");
+            String __VIEWSTATEGENERATOR = __vr.attr("value");
+            String __EVENTVALIDATION = __vn.attr("value");
+            String btn_xq = "学期成绩";
+            String hidLanguage="";
+            String ddlXN =xn;
+            String ddlXQ =xq;
+            String ddl_kcxz ="";
+            String __EVENTTARGET="";
+            String __EVENTARGUMENT ="";
+
+
+            //添加参数
+            List<NameValuePair> pairs = new ArrayList<>();
+
+            pairs.add(new BasicNameValuePair("__VIEWSTATE",__VIEWSTATE));
+            pairs.add(new BasicNameValuePair("__VIEWSTATEGENERATOR",__VIEWSTATEGENERATOR));
+            pairs.add(new BasicNameValuePair("__EVENTVALIDATION",__EVENTVALIDATION));
+            pairs.add(new BasicNameValuePair("btn_xn",btn_xq));
+            pairs.add(new BasicNameValuePair("hidLanguage",hidLanguage));
+            pairs.add(new BasicNameValuePair("ddlXN",ddlXN));
+            pairs.add(new BasicNameValuePair("ddlXQ",ddlXQ));
+            pairs.add(new BasicNameValuePair("ddl_kcxz",ddl_kcxz));
+            pairs.add(new BasicNameValuePair("__EVENTTARGET",__EVENTTARGET));
+            pairs.add(new BasicNameValuePair("__EVENTARGUMENT", __EVENTARGUMENT));
+
+            HttpPost post = new HttpPost(url);
+            post.setHeader("Referer", "http://220.168.44.238/xscjcx.aspx?xh=20124562&xm=%C1%FA%CC%DA&gnmkdm=N121605");
+            post.setHeader("Host", "220.168.44.238");
+            post.setEntity(new UrlEncodedFormEntity(pairs, "gb2312"));
+            //Log.d("cjcx", __VIEWSTATEGENERATOR);
+            //Log.d("cjcx", URLEncoder.encode("龙腾","gb2312"));
+
+            HttpResponse re = httpClient.execute(post);
+            if (re.getStatusLine().getStatusCode()==200){
+                Log.d("cjcx","ok!");
+                return EntityUtils.toString(re.getEntity());
+            }else {
+                Log.d("cjcx","no!");
+                return null;
+            }
+
+
+
+
+
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (ClientProtocolException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        return null;
+
+    }
+
+    /**
+     * 学年成绩
+     * @param xn
+     * @return
+     */
+    public String getScore(String xn){
+        String html = null;
+        try {
+            //url = "http://220.168.44.238/xscjcx.aspx?xh=20124562&xm=%C1%FA%CC%DA&gnmkdm=N121605";
+            String url = "http://220.168.44.238/xscjcx.aspx?"
+                    +"xh=" + URLEncoder.encode(JwcAPI.studentXh,"gb2312")
+                    +"&xm=" + URLEncoder.encode(JwcAPI.studentName,"gb2312")
+                    +"&gnmkdm=N121605";
+
+
+            HttpGet get = new HttpGet(url);
+            get.setHeader("Referer", "http://220.168.44.238/xs_main.aspx?xh=20124562");
+            get.setHeader("Host", "220.168.44.238");
+
+            HttpResponse response = httpClient.execute(get);
+            if (response.getStatusLine().getStatusCode()==200){
+                html= EntityUtils.toString(response.getEntity());
+                Log.d("cjcx","ok1");
+            }
+            if (html == null){
+                return null;
+            }
+            Document doc = Jsoup.parse(html);
+            Element __ve = doc.getElementById("__VIEWSTATE");
+
+            Element __vr = doc.getElementById("__VIEWSTATEGENERATOR");
+
+            Element __vn = doc.getElementById("__EVENTVALIDATION");
+
+            String __VIEWSTATE = __ve.attr("value");
+            String __VIEWSTATEGENERATOR = __vr.attr("value");
+            String __EVENTVALIDATION = __vn.attr("value");
+            String btn_xn = "学年成绩";
+            String hidLanguage="";
+            String ddlXN =xn;
+            String ddlXQ ="";
+            String ddl_kcxz ="";
+            String __EVENTTARGET="";
+            String __EVENTARGUMENT ="";
+
+
+            //添加参数
+            List<NameValuePair> pairs = new ArrayList<>();
+
+            pairs.add(new BasicNameValuePair("__VIEWSTATE",__VIEWSTATE));
+            pairs.add(new BasicNameValuePair("__VIEWSTATEGENERATOR",__VIEWSTATEGENERATOR));
+            pairs.add(new BasicNameValuePair("__EVENTVALIDATION",__EVENTVALIDATION));
+            pairs.add(new BasicNameValuePair("btn_xn",btn_xn));
+            pairs.add(new BasicNameValuePair("hidLanguage",hidLanguage));
+            pairs.add(new BasicNameValuePair("ddlXN",ddlXN));
+            pairs.add(new BasicNameValuePair("ddlXQ",ddlXQ));
+            pairs.add(new BasicNameValuePair("ddl_kcxz",ddl_kcxz));
+            pairs.add(new BasicNameValuePair("__EVENTTARGET",__EVENTTARGET));
+            pairs.add(new BasicNameValuePair("__EVENTARGUMENT", __EVENTARGUMENT));
+
+            HttpPost post = new HttpPost(url);
+            post.setHeader("Referer", "http://220.168.44.238/xscjcx.aspx?xh=20124562&xm=%C1%FA%CC%DA&gnmkdm=N121605");
+            post.setHeader("Host", "220.168.44.238");
+            post.setEntity(new UrlEncodedFormEntity(pairs, "gb2312"));
+            //Log.d("cjcx", __VIEWSTATEGENERATOR);
+            //Log.d("cjcx", URLEncoder.encode("龙腾","gb2312"));
+
+            HttpResponse re = httpClient.execute(post);
+            if (re.getStatusLine().getStatusCode()==200){
+                Log.d("cjcx","ok!");
+                return EntityUtils.toString(re.getEntity());
+            }else {
+                Log.d("cjcx","no!");
+                return null;
+            }
+
+
+
+
+
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (ClientProtocolException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        return null;
+    }
+
+    /**
+     *
+     * 历年成绩
+     * @return
+     */
+    public String getScore(){
+        String html = null;
+        try {
+            //url = "http://220.168.44.238/xscjcx.aspx?xh=20124562&xm=%C1%FA%CC%DA&gnmkdm=N121605";
+            String url = "http://220.168.44.238/xscjcx.aspx?"
+                    +"xh=" + URLEncoder.encode(JwcAPI.studentXh,"gb2312")
+                    +"&xm=" + URLEncoder.encode(JwcAPI.studentName,"gb2312")
+                    +"&gnmkdm=N121605";
+
+
+            HttpGet get = new HttpGet(url);
+            get.setHeader("Referer", "http://220.168.44.238/xs_main.aspx?xh=20124562");
+            get.setHeader("Host", "220.168.44.238");
+
+            HttpResponse response = httpClient.execute(get);
+            if (response.getStatusLine().getStatusCode()==200){
+                html= EntityUtils.toString(response.getEntity());
+                Log.d("cjcx","ok");
+            }
+            if (html == null){
+                return null;
+            }
+            Document doc = Jsoup.parse(html);
+            Element __ve = doc.getElementById("__VIEWSTATE");
+
+            Element __vr = doc.getElementById("__VIEWSTATEGENERATOR");
+
+            Element __vn = doc.getElementById("__EVENTVALIDATION");
+
+            String __VIEWSTATE = __ve.attr("value");
+            String __VIEWSTATEGENERATOR = __vr.attr("value");
+            String __EVENTVALIDATION = __vn.attr("value");
+            String btn_zcj = "历年成绩";
+            String hidLanguage="";
+            String ddlXN = "";
+            String ddlXQ ="";
+            String ddl_kcxz ="";
+            String __EVENTTARGET="";
+            String __EVENTARGUMENT ="";
+            //Origin:http://220.168.44.238;
+            String Origin = "http://220.168.44.238";
+
+
+            //添加参数
+            List<NameValuePair> pairs = new ArrayList<>();
+
+            pairs.add(new BasicNameValuePair("__VIEWSTATE",__VIEWSTATE));
+            pairs.add(new BasicNameValuePair("__VIEWSTATEGENERATOR",__VIEWSTATEGENERATOR));
+            pairs.add(new BasicNameValuePair("__EVENTVALIDATION",__EVENTVALIDATION));
+            pairs.add(new BasicNameValuePair("btn_zcj",btn_zcj));
+            pairs.add(new BasicNameValuePair("hidLanguage",hidLanguage));
+            pairs.add(new BasicNameValuePair("ddlXN", ddlXN));
+            pairs.add(new BasicNameValuePair("ddlXQ",ddlXQ));
+            pairs.add(new BasicNameValuePair("ddl_kcxz", ddl_kcxz));
+            pairs.add(new BasicNameValuePair("__EVENTTARGET",__EVENTTARGET));
+            pairs.add(new BasicNameValuePair("__EVENTARGUMENT", __EVENTARGUMENT));
+            pairs.add(new BasicNameValuePair("Origin", Origin));
+
+            HttpPost post = new HttpPost(url);
+            post.setHeader("Referer", url);
+            post.setHeader("Host", "220.168.44.238");
+            post.setEntity(new UrlEncodedFormEntity(pairs, "gb2312"));
+
+            HttpResponse re = httpClient.execute(post);
+
+            if (re.getStatusLine().getStatusCode()==200){
+                Log.d("cjcx","ok!!!!!!!!!");
+                String result = EntityUtils.toString(re.getEntity());
+                Log.d("cjcx", result);
+                return result;
+            }else {
+                Log.d("cjcx","no!");
+                return null;
+            }
+
+
+
+
+
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (ClientProtocolException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        return null;
+    }
 
 
 
