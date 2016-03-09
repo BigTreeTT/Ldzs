@@ -1,5 +1,6 @@
 package com.longten.ldzs.GradeScore;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,12 +14,17 @@ import com.longten.ldzs.R;
  */
 public class ScoreRecyclerViewAdapter extends RecyclerView.Adapter<ScoreRecyclerViewAdapter.ViewHolder>{
     String []data = {"学期成绩","学年成绩","历年成绩","未通过成绩"};
+    Context context;
+    public ScoreRecyclerViewAdapter(Context context){
+        this.context = context;
+    }
+
     @Override
     public ScoreRecyclerViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         ViewHolder viewHolder = new ViewHolder(
                 LayoutInflater
-                        .from(parent.getContext())
-                        .inflate(R.layout.scorerecyleview_item,null)
+                        .from(context)
+                        .inflate(R.layout.scorerecyleview_item,parent)
         );
         return viewHolder;
     }

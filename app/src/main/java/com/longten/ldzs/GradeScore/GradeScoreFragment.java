@@ -42,7 +42,7 @@ public class GradeScoreFragment extends Fragment {
         fragment = inflater.inflate(R.layout.fragment_grade_score, container, false);
         recyclerView = (RecyclerView) fragment.findViewById(R.id.score_recyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(activity.getApplication(),2));
-        recyclerView.setAdapter(new ScoreRecyclerViewAdapter());
+        recyclerView.setAdapter(new ScoreRecyclerViewAdapter(activity.getApplication()));
 
         return fragment;
     }

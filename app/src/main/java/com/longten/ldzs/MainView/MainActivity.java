@@ -149,13 +149,13 @@ public class MainActivity extends AppCompatActivity
 
                 break;
             case R.id.nav_cj:
-                new Thread() {
-                    @Override
-                    public void run() {
-                        super.run();
-                        JwcAPI.getJwcAPIInstance().getScore();
-                    }
-                }.start();
+//                new Thread() {
+//                    @Override
+//                    public void run() {
+//                        super.run();
+//                        JwcAPI.getJwcAPIInstance().getScore();
+//                    }
+//                }.start();
                 toolbar.setTitle("成绩");
                 transaction = fragmentManager.beginTransaction();
                 transaction.replace(R.id.fragment_con, new GradeScoreFragment());
