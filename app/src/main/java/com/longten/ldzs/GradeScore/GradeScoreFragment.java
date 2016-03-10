@@ -42,46 +42,22 @@ public class GradeScoreFragment extends Fragment {
         fragment = inflater.inflate(R.layout.fragment_grade_score, container, false);
         recyclerView = (RecyclerView) fragment.findViewById(R.id.score_recyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(activity.getApplication(),2));
-        recyclerView.setAdapter(new ScoreRecyclerViewAdapter(activity.getApplication()));
+        recyclerView.setAdapter(new ScoreRecyclerViewAdapter(activity));
+//        recyclerView.setOnTouchListener(
+//                new RecyclerViewListener(activity.getApplicationContext(), new RecyclerViewListener.Listener() {
+//                    @Override
+//                    public void onClick(int position) {
+//                        Toast.makeText(activity.getApplicationContext(), String.valueOf(position), Toast.LENGTH_SHORT).show();
+//
+//
+//                    }
+//                }));
 
         return fragment;
     }
 
 
 
-    /**
-     *
-     * 查询指定学期成绩，平均绩点，分数，最高，最低，未通过科目并加载
-     */
-    public void queryYearGradeScore(String condition){
-
-
-    }
-
-    /**
-     * 查询指定学年成绩，平均绩点，分数，最高，最低，未通过科目
-     *
-     * @param condition
-     */
-    public void queryTermGradeScore(String condition){
-
-
-
-    }
-
-
-
-    /**
-     *
-     * 查询统计信息
-     * 所有学期成绩，平均绩点，分数，最高，最低，未通过科目
-     *
-     */
-    public void statisticalGradeScore(){
-
-
-
-    }
 
 
 

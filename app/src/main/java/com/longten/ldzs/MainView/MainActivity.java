@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.longten.ldzs.Appraise.AppraiseFragment;
 import com.longten.ldzs.Curriculum.CurriculumFragment;
 import com.longten.ldzs.GradeScore.GradeScoreFragment;
+import com.longten.ldzs.GradeScore.QureryScoreActivity;
 import com.longten.ldzs.Library.LibraryFragment;
 import com.longten.ldzs.Library.QueryActivity;
 import com.longten.ldzs.News.NewsFragment;
@@ -224,4 +225,15 @@ public class MainActivity extends AppCompatActivity
         intent.putExtra("title", title);
         startActivity(intent);
     }
+
+    public void gotoQureryScoreActivity(int position){
+
+        Intent intent = new Intent(MainActivity.this, QureryScoreActivity.class);
+
+        intent.putExtra("position", position);
+        startActivity(intent);
+
+    }
+
+
 }

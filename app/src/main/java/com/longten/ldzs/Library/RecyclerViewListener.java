@@ -14,7 +14,7 @@ import com.longten.ldzs.R;
 public class RecyclerViewListener implements View.OnTouchListener {
     GestureDetector mGestureDetector;
     int position;
-    interface Listener{
+    public interface Listener{
         public void onClick(int position);
     }
 
