@@ -78,4 +78,7 @@ public class ScoreRecyclerViewAdapter extends RecyclerView.Adapter<ScoreRecycler
 //            });
         }
     }
+
+    public class ScoreViewHoler {
+    }
 }

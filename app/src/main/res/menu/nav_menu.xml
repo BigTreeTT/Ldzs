@@ -2,11 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_gg"
-            android:icon="@drawable/ic_launcher"
-            android:title="公告"
-            />
+
         <item
             android:icon="@drawable/ic_launcher"
             android:id="@+id/nav_xk"

@@ -1,6 +1,7 @@
 package com.longten.ldzs.GradeScore;
 
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.longten.ldzs.jwcAPI.JwcAPI;
@@ -25,17 +26,18 @@ public class GradePresenter {
     }
 
     /**
-     * 获取学年成绩
+     * 获取学年成绩,并加载
      *
      * @param xn
      */
-    public void queryXnScore(String xn) {
+    public void queryXnScore(final String xn) {
+        Log.d("query",xn);
 
         new AsyncTask<String, String, String>() {
 
             @Override
             protected String doInBackground(String... params) {
-                String html = JwcAPI.getJwcAPIInstance().getScore();
+                String html = JwcAPI.getJwcAPIInstance().getScore(xn);
                 return html;
             }
 
@@ -44,6 +46,12 @@ public class GradePresenter {
                 super.onPostExecute(s);
                 if (s!=null){
                     analyse(s);
+                    activity.recyclerView.setAdapter(
+                            new SRViewAdapter(
+                                    activity.getApplication(), gradeInfos
+                            ));
+
+
                 }else{
                     Toast.makeText(activity.getApplicationContext(),"请求失败，请重试！",Toast.LENGTH_SHORT).show();
                 }
@@ -59,8 +67,27 @@ public class GradePresenter {
      * @param xn
      * @param xq
      */
-    public void queryXqScore(String xn, String xq) {
+    public void queryXqScore(final String xn, final String xq) {
+        new AsyncTask<String,String,String>(){
 
+            @Override
+            protected String doInBackground(String... params) {
+                String html = JwcAPI.getJwcAPIInstance().getScore(xn,xq);
+                return html;
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+                analyse(s);
+                activity.recyclerView.setAdapter(
+                        new SRViewAdapter(
+                                activity.getApplication(), gradeInfos
+                        ));
+
+
+            }
+        }.execute();
 
     }
 
@@ -68,7 +95,26 @@ public class GradePresenter {
      * 获取历年成绩
      */
     public void queryAllScore() {
+        new AsyncTask<String,String,String>(){
 
+            @Override
+            protected String doInBackground(String... params) {
+                String html = JwcAPI.getJwcAPIInstance().getScore();
+                return html;
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+                analyse(s);
+                activity.recyclerView.setAdapter(
+                        new SRViewAdapter(
+                                activity.getApplication(), gradeInfos
+                        ));
+
+
+            }
+        }.execute();
 
     }
 
@@ -98,6 +144,7 @@ public class GradePresenter {
 
             gradeInfos.add(gradeInfo);
         }
+        //Log.d("aaaa",gradeInfos.toString());
 
 //        for (int i=1;i<trs.size();i++){
 //            Element tr = trs.get(i);

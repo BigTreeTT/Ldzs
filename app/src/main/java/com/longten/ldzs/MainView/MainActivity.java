@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity
     CurriculumFragment curriculumFragment;
     boolean is_first = true;
     TextView userName;
+
     String xhxm;
     String studentName;
 
