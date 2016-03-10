@@ -22,7 +22,6 @@ import com.longten.ldzs.GradeScore.GradeScoreFragment;
 import com.longten.ldzs.GradeScore.QureryScoreActivity;
 import com.longten.ldzs.Library.LibraryFragment;
 import com.longten.ldzs.Library.QueryActivity;
-import com.longten.ldzs.News.NewsFragment;
 import com.longten.ldzs.R;
 import com.longten.ldzs.jwcAPI.JwcAPI;
 
@@ -202,13 +201,13 @@ public class MainActivity extends AppCompatActivity
 
 
                 break;
-            case R.id.nav_gg:
-                toolbar.setTitle("公告");
-                transaction = fragmentManager.beginTransaction();
-
-                transaction.replace(R.id.fragment_con, new NewsFragment());
-                transaction.commit();
-                break;
+//            case R.id.nav_gg:
+//                toolbar.setTitle("公告");
+//                transaction = fragmentManager.beginTransaction();
+//
+//                transaction.replace(R.id.fragment_con, new NewsFragment());
+//                transaction.commit();
+//                break;
 
 
             default:
