@@ -7,14 +7,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.longten.ldzs.R;
 
 public class QureryScoreActivity extends AppCompatActivity {
     GradePresenter presenter;
-    public TextView text;
+    //public TextView text;
 
 
     @Override
@@ -25,7 +24,7 @@ public class QureryScoreActivity extends AppCompatActivity {
         Intent intent = getIntent();
         int position = intent.getIntExtra("position", 1);
         showChoiceDialog(position);
-        text = (TextView) findViewById(R.id.text123);
+       // text = (TextView) findViewById(R.id.text123);
     }
 
     public void showChoiceDialog(int position) {

@@ -71,6 +71,12 @@ public class GradePresenter {
 
 
     }
+
+    /**
+     * 对输入的数据进行解析
+     *
+     * @param html
+     */
     private void analyse(String html){
         Document doc = Jsoup.parse(html);
         Elements table = doc.getElementsByClass("datelist");
@@ -91,7 +97,6 @@ public class GradePresenter {
             gradeInfo.reStudy= tds.get(12).text();
 
             gradeInfos.add(gradeInfo);
-
         }
 
 //        for (int i=1;i<trs.size();i++){
@@ -112,7 +117,7 @@ public class GradePresenter {
 //            gradeInfos.add(gradeInfo);
 //        }
        // Toast.makeText(activity.getApplicationContext(),gradeInfos.toString(),Toast.LENGTH_SHORT).show();;
-        activity.text.setText(gradeInfos.toString());
+       // activity.text.setText(gradeInfos.toString());
 
 
     }
