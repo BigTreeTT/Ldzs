@@ -1,8 +1,10 @@
 package com.longten.ldzs.GradeScore;
 
+import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -22,6 +24,7 @@ public class QureryScoreActivity extends AppCompatActivity {
     RecyclerView recyclerView;
 
 
+    @TargetApi(Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +32,11 @@ public class QureryScoreActivity extends AppCompatActivity {
         presenter = new GradePresenter(this);
         recyclerView = (RecyclerView) findViewById(R.id.score_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+
+
+
+
         Intent intent = getIntent();
         int position = intent.getIntExtra("position", 1);
         showChoiceDialog(position);

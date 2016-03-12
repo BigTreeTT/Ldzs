@@ -53,7 +53,7 @@ public class GradePresenter {
 
 
                 }else{
-                    Toast.makeText(activity.getApplicationContext(),"请求失败，请重试！",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity.getApplicationContext(), "请求失败，请重试！", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -79,11 +79,16 @@ public class GradePresenter {
             @Override
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
-                analyse(s);
-                activity.recyclerView.setAdapter(
-                        new SRViewAdapter(
-                                activity.getApplication(), gradeInfos
-                        ));
+                if (s!=null){
+                    analyse(s);
+                    activity.recyclerView.setAdapter(
+                            new SRViewAdapter(
+                                    activity.getApplication(), gradeInfos
+                            ));
+                }else {
+
+                    Toast.makeText(activity.getApplicationContext(),"请求失败！请检查网络，重新登录",Toast.LENGTH_SHORT).show();
+                }
 
 
             }
@@ -106,11 +111,16 @@ public class GradePresenter {
             @Override
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
-                analyse(s);
-                activity.recyclerView.setAdapter(
-                        new SRViewAdapter(
-                                activity.getApplication(), gradeInfos
-                        ));
+                if (s!=null){
+                    analyse(s);
+                    activity.recyclerView.setAdapter(
+                            new SRViewAdapter(
+                                    activity.getApplication(), gradeInfos
+                            ));
+                }else {
+
+                    Toast.makeText(activity.getApplicationContext(),"请求失败！请检查网络，重新登录",Toast.LENGTH_SHORT).show();
+                }
 
 
             }

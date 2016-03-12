@@ -45,6 +45,8 @@ public class QueryActivity extends AppCompatActivity {
                 }));
         presenter.getBooksInfoByTitle(title, currentPage);
 
+        //recyclerView.setScroll
+
     }
 
     public void gotoBookDetailInfoAcyivity(int position,int currentPage){

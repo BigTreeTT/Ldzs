@@ -5,6 +5,8 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
@@ -38,6 +40,7 @@ public class CurriculumFragment extends Fragment {
     ListView listView;
     GridView gridView;
     public MainActivity activity;
+    RecyclerView curriculum_header;
 
 
     public CurriculumFragment() {
@@ -68,6 +71,20 @@ public class CurriculumFragment extends Fragment {
         // Inflate the layout for this fragment/
 
         fragment = inflater.inflate(R.layout.fragment_curriculum, container, false);
+
+        curriculum_header = (RecyclerView) fragment.findViewById(R.id.curriculum_header);
+        GridLayoutManager gridLayoutManager =
+                new GridLayoutManager(
+                        activity.getApplicationContext(),
+                        7,
+                        GridLayoutManager.VERTICAL,
+                        false);
+
+
+        curriculum_header.setLayoutManager(gridLayoutManager);
+
+        curriculum_header.setAdapter(new CurriculumHeaderAdapter(activity.getApplicationContext()));
+
         //currTextView = (TextView) fragment.findViewById(R.id.curr_textView);
         File Dir =  activity.getApplicationContext().getFilesDir();
         File curr = new File(Dir,"lastUseCurriculum");

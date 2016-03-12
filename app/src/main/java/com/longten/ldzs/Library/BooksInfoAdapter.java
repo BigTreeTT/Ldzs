@@ -1,6 +1,7 @@
 package com.longten.ldzs.Library;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +36,9 @@ public class BooksInfoAdapter extends RecyclerView.Adapter<BooksInfoAdapter.View
         holder.bookAuthor.setText("作    者："+ bookInfos.get(position).authors);
         holder.bookPress.setText("出 版 社："+ bookInfos.get(position).press);
         holder.bookTime.setText("出版时间："+ bookInfos.get(position).time);
+        if (position == bookInfos.size()){
+            Log.d("ooo",String.valueOf(position));
+        }
 
     }
 

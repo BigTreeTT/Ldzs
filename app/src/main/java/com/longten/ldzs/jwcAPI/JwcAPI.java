@@ -390,10 +390,15 @@ public class JwcAPI {
 
 
             HttpGet get = new HttpGet(url);
-            get.setHeader("Referer", "http://220.168.44.238/xs_main.aspx?xh=20124562");
+            get.setHeader("Referer", "http://220.168.44.238/xs_main.aspx?xh="+JwcAPI.studentXh);
             get.setHeader("Host", "220.168.44.238");
-
-            HttpResponse response = httpClient.execute(get);
+            HttpResponse response = null;
+            try{
+              response = httpClient.execute(get);
+           }catch (Exception e){
+               e.printStackTrace();
+                return null;
+           }
             if (response.getStatusLine().getStatusCode()==200){
                 html= EntityUtils.toString(response.getEntity());
                 Log.d("cjcx","ok1");
@@ -435,7 +440,7 @@ public class JwcAPI {
             pairs.add(new BasicNameValuePair("__EVENTARGUMENT", __EVENTARGUMENT));
 
             HttpPost post = new HttpPost(url);
-            post.setHeader("Referer", "http://220.168.44.238/xscjcx.aspx?xh=20124562&xm=%C1%FA%CC%DA&gnmkdm=N121605");
+            post.setHeader("Referer", "http://220.168.44.238/xscjcx.aspx?xh="+JwcAPI.studentXh+ "&xm=%C1%FA%CC%DA&gnmkdm=N121605");
             post.setHeader("Host", "220.168.44.238");
             post.setEntity(new UrlEncodedFormEntity(pairs, "gb2312"));
             //Log.d("cjcx", __VIEWSTATEGENERATOR);
@@ -483,7 +488,7 @@ public class JwcAPI {
 
 
             HttpGet get = new HttpGet(url);
-            get.setHeader("Referer", "http://220.168.44.238/xs_main.aspx?xh=20124562");
+            get.setHeader("Referer", "http://220.168.44.238/xs_main.aspx?xh="+JwcAPI.studentXh);
             get.setHeader("Host", "220.168.44.238");
 
             HttpResponse response = httpClient.execute(get);
@@ -528,7 +533,7 @@ public class JwcAPI {
             pairs.add(new BasicNameValuePair("__EVENTARGUMENT", __EVENTARGUMENT));
 
             HttpPost post = new HttpPost(url);
-            post.setHeader("Referer", "http://220.168.44.238/xscjcx.aspx?xh=20124562&xm=%C1%FA%CC%DA&gnmkdm=N121605");
+            post.setHeader("Referer", "http://220.168.44.238/xscjcx.aspx?xh="+JwcAPI.studentXh+"&xm=%C1%FA%CC%DA&gnmkdm=N121605");
             post.setHeader("Host", "220.168.44.238");
             post.setEntity(new UrlEncodedFormEntity(pairs, "gb2312"));
             //Log.d("cjcx", __VIEWSTATEGENERATOR);
@@ -575,7 +580,7 @@ public class JwcAPI {
 
 
             HttpGet get = new HttpGet(url);
-            get.setHeader("Referer", "http://220.168.44.238/xs_main.aspx?xh=20124562");
+            get.setHeader("Referer", "http://220.168.44.238/xs_main.aspx?xh="+JwcAPI.studentXh);
             get.setHeader("Host", "220.168.44.238");
 
             HttpResponse response = httpClient.execute(get);
