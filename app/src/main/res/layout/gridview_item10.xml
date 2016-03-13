@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="200dp"
+    android:layout_height="109dp"
+    android:orientation="vertical"
+    android:layout_margin="1dp"
+
+
+
+
+    android:background="@drawable/course_border10"
+    >
+
+    <TextView
+        android:layout_width="55dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/course_name"
+        android:maxLines="4"
+        />
+
+    <TextView
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/course_addr"
+        android:maxLines="2"
+
+        />
+
+</LinearLayout>
