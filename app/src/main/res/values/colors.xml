@@ -4,4 +4,18 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="tms">#00000000</color>
+    <color name="course_detail_line">#9d55b8</color>
+
+
+
+
+    <color name="course_bg1">#00CCCC</color>
+    <color name="course_bg2">#009999</color>
+    <color name="course_bg3">#66FF66</color>
+    <color name="course_bg4">#9966CC</color>
+    <color name="course_bg5">#9999CC</color>
+    <color name="course_bg6">#E0FFFF</color>
+
+
+
 </resources>

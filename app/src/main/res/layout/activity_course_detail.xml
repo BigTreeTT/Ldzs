@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="课程一信息"
+        />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#9d55b8"
+        />
+
+
+
+    <GridLayout
+        android:id="@+id/GridLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:rowCount="4"
+        android:columnCount="5"
+
+
+
+        >
+        <!--  课程名-->
+        <ImageView
+
+            android:paddingTop="15dp"
+            android:layout_gravity="fill"
+            android:scaleType="fitCenter"
+            android:layout_column="0"
+            android:layout_row="0"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/iconfont_icon0"
+
+
+
+            />
+
+        <TextView
+            android:paddingTop="15dp"
+            android:gravity="left"
+            android:layout_gravity="fill"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_column="1"
+            android:layout_row="0"
+            android:text="名称"
+            android:textSize="16sp"
+            />
+        <TextView
+            android:paddingTop="15dp"
+            android:gravity="left"
+            android:layout_gravity="fill"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_column="2"
+            android:layout_row="0"
+            android:text="       "
+            android:textSize="16sp"
+            />
+        <TextView
+            android:paddingTop="15dp"
+
+            android:gravity="left"
+            android:layout_gravity="fill"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_column="3"
+            android:layout_row="0"
+            android:text="计算机导论"
+            android:textSize="16sp"
+            android:id="@+id/course_name1"
+            />
+
+        <!--  教室-->
+
+        <ImageView
+
+            android:paddingTop="15dp"
+            android:layout_gravity="fill"
+            android:scaleType="fitCenter"
+            android:layout_column="0"
+            android:layout_row="1"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/iconfont_icon0"
+            />
+
+
+        <TextView
+            android:paddingTop="15dp"
+            android:gravity="left"
+            android:layout_gravity="fill"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_column="1"
+            android:layout_row="1"
+            android:text="教室"
+
+            android:textSize="16sp"
+            />
+        <TextView
+            android:paddingTop="15dp"
+            android:gravity="left"
+            android:layout_gravity="fill"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_column="2"
+            android:layout_row="1"
+            android:text="       "
+            android:textSize="16sp"
+            />
+        <TextView
+            android:paddingTop="15dp"
+            android:gravity="left"
+            android:layout_gravity="fill"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_column="3"
+            android:layout_row="1"
+            android:text="一教南302"
+            android:textSize="16sp"
+            android:id="@+id/course_addr1"
+            />
+        <!--    教师-->
+
+
+        <ImageView
+
+            android:paddingTop="15dp"
+            android:layout_gravity="fill"
+            android:scaleType="fitCenter"
+            android:layout_column="0"
+            android:layout_row="2"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/iconfont_icon0"
+
+            />
+
+        <TextView
+            android:paddingTop="15dp"
+            android:gravity="left"
+            android:layout_gravity="fill"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_column="1"
+            android:layout_row="2"
+            android:text="教师"
+            android:textSize="16sp"
+            />
+        <TextView
+            android:paddingTop="15dp"
+            android:gravity="center"
+            android:layout_gravity="fill"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_column="2"
+            android:layout_row="2"
+            android:text="       "
+            android:textSize="16sp"
+            />
+        <TextView
+            android:paddingTop="15dp"
+
+            android:gravity="left"
+            android:layout_gravity="fill"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_column="3"
+            android:layout_row="2"
+            android:text="谭琳"
+            android:textSize="16sp"
+            android:id="@+id/course_teacher1"
+            />
+
+        <!--时间-->
+        <ImageView
+
+            android:paddingTop="15dp"
+            android:layout_gravity="fill"
+            android:scaleType="fitCenter"
+            android:layout_column="0"
+            android:layout_row="3"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/iconfont_icon0"
+
+            />
+
+        <TextView
+            android:paddingTop="15dp"
+            android:gravity="left"
+            android:layout_gravity="fill"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_column="1"
+            android:layout_row="3"
+            android:text="时间"
+            android:textSize="16sp"
+            />
+        <TextView
+            android:paddingTop="15dp"
+            android:gravity="center"
+            android:layout_gravity="fill"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_column="2"
+            android:layout_row="3"
+            android:text="       "
+            android:textSize="16sp"
+            />
+        <TextView
+            android:paddingTop="15dp"
+
+            android:gravity="left"
+            android:layout_gravity="fill"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_column="3"
+            android:layout_row="3"
+            android:text="1-17周"
+            android:textSize="16sp"
+            android:id="@+id/course_time1"
+            />
+
+
+
+
+
+    </GridLayout>
+
+
+    <TextView
+        android:paddingTop="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="课程二信息"
+        />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#9d55b8"
+        />
+
+
+
+    <GridLayout
+        android:id="@+id/GridLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:rowCount="4"
+        android:columnCount="5"
+
+
+
+        >
+        <!--  课程名-->
+        <ImageView
+
+            android:paddingTop="15dp"
+            android:layout_gravity="fill"
+            android:scaleType="fitCenter"
+            android:layout_column="0"
+            android:layout_row="0"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/iconfont_icon0"
+
+            />
+
+        <TextView
+            android:paddingTop="15dp"
+            android:gravity="left"
+            android:layout_gravity="fill"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_column="1"
+            android:layout_row="0"
+            android:text="名称"
+            android:textSize="16sp"
+            />
+        <TextView
+            android:paddingTop="15dp"
+            android:gravity="left"
+            android:layout_gravity="fill"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_column="2"
+            android:layout_row="0"
+            android:text="       "
+            android:textSize="16sp"
+            />
+        <TextView
+            android:paddingTop="15dp"
+
+            android:gravity="left"
+            android:layout_gravity="fill"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_column="3"
+            android:layout_row="0"
+            android:text="计算机导论"
+            android:textSize="16sp"
+            android:id="@+id/course_name2"
+            />
+
+        <!--  教室-->
+
+        <ImageView
+
+            android:paddingTop="15dp"
+            android:layout_gravity="fill"
+            android:scaleType="fitCenter"
+            android:layout_column="0"
+            android:layout_row="1"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/iconfont_icon0"
+            />
+
+
+        <TextView
+            android:paddingTop="15dp"
+            android:gravity="left"
+            android:layout_gravity="fill"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_column="1"
+            android:layout_row="1"
+            android:text="教室"
+            android:textSize="16sp"
+            />
+        <TextView
+            android:paddingTop="15dp"
+            android:gravity="left"
+            android:layout_gravity="fill"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_column="2"
+            android:layout_row="1"
+            android:text="       "
+            android:textSize="16sp"
+            />
+        <TextView
+            android:paddingTop="15dp"
+            android:gravity="center"
+            android:layout_gravity="fill"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_column="3"
+            android:layout_row="1"
+            android:text="一教南302"
+            android:textSize="16sp"
+            android:id="@+id/course_addr2"
+            />
+        <!--    教师-->
+
+
+        <ImageView
+
+            android:paddingTop="15dp"
+            android:layout_gravity="fill"
+            android:scaleType="fitCenter"
+            android:layout_column="0"
+            android:layout_row="2"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/iconfont_icon0"
+
+            />
+
+        <TextView
+            android:paddingTop="15dp"
+            android:gravity="left"
+            android:layout_gravity="fill"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_column="1"
+            android:layout_row="2"
+            android:text="教师"
+            android:textSize="16sp"
+            />
+        <TextView
+            android:paddingTop="15dp"
+            android:gravity="center"
+            android:layout_gravity="fill"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_column="2"
+            android:layout_row="2"
+            android:text="       "
+            android:textSize="16sp"
+            />
+        <TextView
+            android:paddingTop="15dp"
+
+            android:gravity="left"
+            android:layout_gravity="fill"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_column="3"
+            android:layout_row="2"
+            android:text="谭琳"
+            android:textSize="16sp"
+            android:id="@+id/course_teacher2"
+            />
+
+        <!--时间-->
+        <ImageView
+
+            android:paddingTop="15dp"
+            android:layout_gravity="fill"
+            android:scaleType="fitCenter"
+            android:layout_column="0"
+            android:layout_row="3"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/iconfont_icon0"
+
+            />
+
+        <TextView
+            android:paddingTop="15dp"
+            android:gravity="left"
+            android:layout_gravity="fill"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_column="1"
+            android:layout_row="3"
+            android:text="时间"
+            android:textSize="16sp"
+            />
+        <TextView
+            android:paddingTop="15dp"
+            android:gravity="center"
+            android:layout_gravity="fill"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_column="2"
+            android:layout_row="3"
+            android:text="       "
+            android:textSize="16sp"
+            />
+        <TextView
+            android:paddingTop="15dp"
+
+            android:gravity="left"
+            android:layout_gravity="fill"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_column="3"
+            android:layout_row="3"
+            android:text="1-17周"
+            android:textSize="16sp"
+            android:id="@+id/course_time2"
+            />
+
+
+
+
+
+    </GridLayout>
+    </LinearLayout>

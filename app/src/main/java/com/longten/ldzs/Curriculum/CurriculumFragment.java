@@ -8,13 +8,9 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.GridView;
-import android.widget.ListView;
 
 import com.longten.ldzs.MainView.MainActivity;
 import com.longten.ldzs.R;
@@ -37,8 +33,10 @@ public class CurriculumFragment extends Fragment {
     //public TextView currTextView;
     String result;
     Handler handler;
-    ListView listView;
-    GridView gridView;
+    //ListView listView;
+    //GridView gridView;
+    RecyclerView curriculum_left;
+    RecyclerView curriculum_body;
     public MainActivity activity;
     RecyclerView curriculum_header;
 
@@ -97,9 +95,15 @@ public class CurriculumFragment extends Fragment {
             }
         }
 
-        listView = (ListView) fragment.findViewById(R.id.listView_courseNumber);
-        listView.setAdapter(new LvcnAdapter(activity.getApplicationContext()));
-        gridView = (GridView) fragment.findViewById(R.id.curriculum_gridView);
+        //listView = (ListView) fragment.findViewById(R.id.listView_courseNumber);
+        //listView.setAdapter(new LvcnAdapter(activity.getApplicationContext()));
+        //gridView = (GridView) fragment.findViewById(R.id.curriculum_gridView);
+        curriculum_left = (RecyclerView) fragment.findViewById(R.id.curriculum_left);
+        curriculum_left.setLayoutManager(new GridLayoutManager(activity.getApplicationContext(),1));
+        curriculum_body = (RecyclerView) fragment.findViewById(R.id.curriculum_body);
+
+
+
         if (curr.length()==0){
             importTable("21");
         }else {
@@ -146,6 +150,7 @@ public class CurriculumFragment extends Fragment {
      * 并绘至fragment
      *[\u4e00-\u9fa5] 中文
      */
+
     public void drawTable(){
         CurriculumInfo curriculumInfo = new CurriculumInfo();
         File curr = new File(activity.getFilesDir(),"lastUseCurriculum");
@@ -270,17 +275,51 @@ public class CurriculumFragment extends Fragment {
                 }
                 //currTextView.append(curriculumShowInfo.curriculum.toString());
                 //currTextView.append(curriculumShowInfo2.curriculum.toString());
-                GridViewAdpter gridViewAdpter = new GridViewAdpter(
+                /**
+                 * 绘制课表body
+                 *
+                 */
+//                GridViewAdpter gridViewAdpter = new GridViewAdpter(
+//                        activity.getApplicationContext(),
+//                        curriculumShowInfo,curriculumShowInfo2,1);
+                //gridView.setAdapter(gridViewAdpter);
+                curriculum_body.setLayoutManager(new GridLayoutManager(
                         activity.getApplicationContext(),
-                        curriculumShowInfo,curriculumShowInfo2,1);
-                gridView.setAdapter(gridViewAdpter);
-                WindowManager windowManager = (WindowManager) activity
-                        .getApplicationContext()
-                        .getSystemService(Context.WINDOW_SERVICE);
-                Display display = windowManager.getDefaultDisplay();
-                int windowWith = display.getWidth();
-                Log.d("windwWidth", String.valueOf(windowWith));
-               // gridView.setColumnWidth();
+                        7
+                ));
+                int currentWeek = 2;
+                CurriculumBodyAdapter curriculumBodyAdapter = new CurriculumBodyAdapter(
+                        activity.getApplicationContext(),
+                        curriculumShowInfo,
+                        curriculumShowInfo2,
+                        currentWeek
+                );
+
+                curriculum_body.setAdapter(curriculumBodyAdapter);
+                curriculumBodyAdapter.setOnItemClickListener(new CurriculumBodyAdapter.Listener() {
+                    @Override
+                    public void onClick(Course course1, Course course2) {
+                        activity.gotoCourseDetailActivity(course1,course2);
+
+                    }
+                });
+                curriculum_left.setAdapter(new CurriculumLeftAdapter(activity.getApplicationContext()));
+//               curriculum_body.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+//                   @Override
+//                   public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+//                       listView.smoothScrollBy(oldScrollY-scrollX,10);
+//                   }
+//               });
+                curriculum_body.setOnScrollListener(new RecyclerView.OnScrollListener() {
+                    @Override
+                    public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                        super.onScrolled(recyclerView, dx, dy);
+                        curriculum_left.smoothScrollBy(dy, 10);
+                    }
+                });
+
+
+
 
 
 

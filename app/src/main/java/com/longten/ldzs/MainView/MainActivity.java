@@ -17,6 +17,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.longten.ldzs.Appraise.AppraiseFragment;
+import com.longten.ldzs.Curriculum.Course;
+import com.longten.ldzs.Curriculum.CourseDetail;
 import com.longten.ldzs.Curriculum.CurriculumFragment;
 import com.longten.ldzs.GradeScore.GradeScoreFragment;
 import com.longten.ldzs.GradeScore.QureryScoreActivity;
@@ -234,6 +236,19 @@ public class MainActivity extends AppCompatActivity
         startActivity(intent);
 
     }
+    public void gotoCourseDetailActivity(Course course1,Course course2){
+        Intent intent = new Intent(MainActivity.this, CourseDetail.class);
+        Bundle b = new Bundle();
+        b.putSerializable("course1",course1);
+        b.putSerializable("course2",course2);
+        intent.putExtra("bundle", b);
+        startActivity(intent);
+
+
+
+
+    }
+
 
 
 }
