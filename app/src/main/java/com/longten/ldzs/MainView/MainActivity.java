@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.longten.ldzs.Appraise.AppraiseFragment;
 import com.longten.ldzs.Curriculum.Course;
@@ -148,6 +149,7 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_xk:
 
                 toolbar.setTitle("选课");
+                Toast.makeText(getApplicationContext(),"选课暂未开放",Toast.LENGTH_SHORT).show();
 
 
                 break;
@@ -189,11 +191,13 @@ public class MainActivity extends AppCompatActivity
                 transaction = fragmentManager.beginTransaction();
                 transaction.replace(R.id.fragment_con, new AppraiseFragment());
                 transaction.commit();
+                Toast.makeText(getApplicationContext(),"教务评价暂未开放",Toast.LENGTH_SHORT).show();
 
 
                 break;
             case R.id.nav_tsg:
                 toolbar.setTitle("图书馆");
+
                 /**
                  * 每次commit 后，要重新获取transaction
                  *
@@ -223,9 +227,16 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void gotoQureryActivity(String title) {
-        Intent intent = new Intent(MainActivity.this, QueryActivity.class);
-        intent.putExtra("title", title);
-        startActivity(intent);
+
+        if (title ==null){
+            Toast.makeText(getApplicationContext(),"请输入要查询的内容！",Toast.LENGTH_SHORT).show();
+            return;
+        }else {
+            Intent intent = new Intent(MainActivity.this, QueryActivity.class);
+            intent.putExtra("title", title);
+            startActivity(intent);
+        }
+
     }
 
     public void gotoQureryScoreActivity(int position){
