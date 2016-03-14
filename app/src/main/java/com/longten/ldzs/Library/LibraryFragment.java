@@ -7,8 +7,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.longten.ldzs.MainView.MainActivity;
 import com.longten.ldzs.R;
@@ -21,7 +21,7 @@ public class LibraryFragment extends Fragment{
     //RecyclerView recyclerView;
     MainActivity activity;
     EditText search_et;
-    Button btn_seach;
+    ImageView btn_seach;
 
 
     @Override
@@ -52,7 +52,7 @@ public class LibraryFragment extends Fragment{
        // recyclerView = (RecyclerView) fragment.findViewById(R.id.books_recyclerView);
         //recyclerView.setLayoutManager(new GridLayoutManager(activity.getApplication(),1));
         search_et = (EditText) fragment.findViewById(R.id.search_library);
-        btn_seach = (Button) fragment.findViewById(R.id.btn_search);
+        btn_seach = (ImageView) fragment.findViewById(R.id.btn_search);
         btn_seach.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

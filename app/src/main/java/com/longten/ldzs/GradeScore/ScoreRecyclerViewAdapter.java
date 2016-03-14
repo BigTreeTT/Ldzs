@@ -1,10 +1,12 @@
 package com.longten.ldzs.GradeScore;
 
 import android.content.Context;
+import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +41,30 @@ public class ScoreRecyclerViewAdapter extends RecyclerView.Adapter<ScoreRecycler
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         holder.textView.setText(data[position]);
+        switch (position){
+            case 0:
+                holder.imageView.setImageBitmap(
+                        BitmapFactory.decodeResource(activity.getResources(),R.drawable.tscore));
+                break;
+            case 1:
+                holder.imageView.setImageBitmap(
+                        BitmapFactory.decodeResource(activity.getResources(),R.drawable.tscore));
+                break;
+            case 2:
+                holder.imageView.setImageBitmap(
+                        BitmapFactory.decodeResource(activity.getResources(),R.drawable.chengjiguanli));
+                break;
+            case 3:
+                holder.imageView.setImageBitmap(
+                        BitmapFactory.decodeResource(activity.getResources(),R.drawable.xinxiweitongguo));
+                break;
+            case 4:
+                holder.imageView.setImageBitmap(
+                        BitmapFactory.decodeResource(activity.getResources(),R.drawable.tongji));
+                break;
+
+
+        }
 //        holder.textView.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -66,10 +92,12 @@ public class ScoreRecyclerViewAdapter extends RecyclerView.Adapter<ScoreRecycler
     }
     class ViewHolder extends RecyclerView.ViewHolder{
         TextView textView ;
+        ImageView imageView;
 
         public ViewHolder(View itemView) {
             super(itemView);
             textView = (TextView) itemView.findViewById(R.id.text);
+            imageView = (ImageView) itemView.findViewById(R.id.imageview);
 //            itemView.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View v) {

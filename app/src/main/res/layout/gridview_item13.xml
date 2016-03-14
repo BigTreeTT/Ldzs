@@ -8,7 +8,7 @@
 
 
 
-    android:background="@drawable/course_border12"
+    android:background="@drawable/course_border13"
     >
 
     <TextView

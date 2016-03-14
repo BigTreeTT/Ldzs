@@ -25,8 +25,8 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        userName = (EditText) findViewById(R.id.et_username);
-        passWord = (EditText) findViewById(R.id.et_password);
+        userName = (EditText) findViewById(R.id.userName);
+        passWord = (EditText) findViewById(R.id.passWord);
 
 
         /**
@@ -35,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
          */
 
        try {
-           findViewById(R.id.btn_login).setOnClickListener(new View.OnClickListener() {
+           findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
                @Override
                public void onClick(View v) {
                    final String userNameStr = userName.getText().toString();

@@ -7,24 +7,29 @@
     card_view:cardBackgroundColor="@android:color/white"
     card_view:cardCornerRadius="5dp" >
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         >
         <ImageView
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:background="@android:color/holo_blue_light"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:src="@drawable/weitongguo"
+            android:id="@+id/imageview"
 
-            />
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/text"
-            />
+            android:text="未通过成绩"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
 
-    </LinearLayout>
+
+    </RelativeLayout>
 
 
 </android.support.v7.widget.CardView>

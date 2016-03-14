@@ -80,7 +80,7 @@ public class CurriculumBodyAdapter extends RecyclerView.Adapter<CurriculumBodyAd
         int i = position / 7;//行
         int j = position % 7;//列
         final Course course1 = courses1.curriculum.get(i).get(j);
-        final Course course2 = courses1.curriculum.get(i).get(j);
+        final Course course2 = courses2.curriculum.get(i).get(j);
 
         boolean course1null = course1.courseName == null;
         boolean course2null = course2.courseName == null;
@@ -223,7 +223,7 @@ public class CurriculumBodyAdapter extends RecyclerView.Adapter<CurriculumBodyAd
         int i = position / 7;//行
         int j = position % 7;//列
         final Course course1 = courses1.curriculum.get(i).get(j);
-        final Course course2 = courses1.curriculum.get(i).get(j);
+        final Course course2 = courses2.curriculum.get(i).get(j);
 
 
         if (course1.courseName != null && course2.courseName != null) {
@@ -321,7 +321,7 @@ public class CurriculumBodyAdapter extends RecyclerView.Adapter<CurriculumBodyAd
 
             for (j = 0; j < 7; j++) {
                 Course course1 = courses1.curriculum.get(i).get(j);
-                Course course2 = courses1.curriculum.get(i).get(j);
+                Course course2 = courses2.curriculum.get(i).get(j);
 
                 if (course1.courseName!=null){
                     int startTime = Integer.valueOf(course1.startTime);
@@ -349,7 +349,7 @@ public class CurriculumBodyAdapter extends RecyclerView.Adapter<CurriculumBodyAd
                 int m0 = 0;
                 int n0 = 0;
                 if(i>0) n0=7;
-                m0 = i+1;
+                m0 = i;
 
                 if (curriculum.get(i).get(j).courseName != null) {
                     //遍历前面所有课程，寻找是否存在同名

@@ -4,28 +4,28 @@
     <group android:checkableBehavior="single">
 
         <item
-            android:icon="@drawable/ic_launcher"
+            android:icon="@drawable/newcourse"
             android:id="@+id/nav_xk"
 
             android:title="选课" />
         <item
-            android:icon="@drawable/ic_launcher"
+            android:icon="@drawable/appraisenodata"
             android:id="@+id/nav_pj"
             android:title="评价"
             />
         <item
-            android:icon="@drawable/ic_launcher"
+            android:icon="@drawable/curriculum"
             android:id="@+id/nav_kb"
             android:title="课表"
             android:checked="true"
             />
         <item
-            android:icon="@drawable/ic_launcher"
+            android:icon="@drawable/library"
             android:id="@+id/nav_tsg"
             android:title="图书馆"
             />
         <item
-            android:icon="@drawable/ic_launcher"
+            android:icon="@drawable/score"
             android:id="@+id/nav_cj"
             android:title="成绩"
             />

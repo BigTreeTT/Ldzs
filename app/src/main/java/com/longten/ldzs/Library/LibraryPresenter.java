@@ -2,6 +2,7 @@ package com.longten.ldzs.Library;
 
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -59,18 +60,24 @@ public class LibraryPresenter {
             @Override
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
+                if (s==null){
+                    Toast.makeText(activity.getApplicationContext(),"暂无您要查询的内容！",Toast.LENGTH_SHORT).show();
+                }else {
+                    //libraryFragment.textView.append(s);
+                    bookInfos = analyse(s);
+                    Log.d("hello1", String.valueOf(bookInfos.size()));
+                    //libraryFragment.textView.append(bookInfos.toString());
+                    BookList.bookInfoArrayList = bookInfos;
+                    //libraryFragment.recyclerView.setAdapter(new BooksInfoAdapter(bookInfos));
+                    //getBookDetailInfo(2, 8);
+                    //libraryFragment.setAdapter(bookInfos);
+                    BooksInfoAdapter adapter = new BooksInfoAdapter(bookInfos);
 
-                //libraryFragment.textView.append(s);
-                bookInfos = analyse(s);
-                Log.d("hello1", String.valueOf(bookInfos.size()));
-                //libraryFragment.textView.append(bookInfos.toString());
-                BookList.bookInfoArrayList = bookInfos;
-                //libraryFragment.recyclerView.setAdapter(new BooksInfoAdapter(bookInfos));
-                //getBookDetailInfo(2, 8);
-                //libraryFragment.setAdapter(bookInfos);
-                BooksInfoAdapter adapter = new BooksInfoAdapter(bookInfos);
+                    activity.recyclerView.setAdapter(adapter);
 
-                activity.recyclerView.setAdapter(adapter);
+
+                }
+
 
 
 
@@ -143,8 +150,8 @@ public class LibraryPresenter {
         }
 
         bookInfos = books;
-        Log.d("hello", bookInfos.get(2).toString());
-        Log.d("hello", BookList.bookInfoArrayList.toString());
+        //Log.d("hello", bookInfos.get(2).toString());
+        //Log.d("hello", BookList.bookInfoArrayList.toString());
         //libraryFragment.textView.setText(bookInfos.toString());
 
         return bookInfos;
